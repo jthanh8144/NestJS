@@ -1,5 +1,5 @@
 import { DefaultNamingStrategy, Table, NamingStrategyInterface } from 'typeorm';
-import crypto from 'crypto';
+import { createHash } from 'crypto';
 
 class CustomNamingStrategy
   extends DefaultNamingStrategy
@@ -20,7 +20,7 @@ class CustomNamingStrategy
       `public.${tableOrName}_${referencedTablePath}`,
     );
 
-    return `fk_${crypto.createHash('md5').update(name).digest('hex')}`;
+    return `fk_${createHash('md5').update(name).digest('hex')}`;
   }
 }
 

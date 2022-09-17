@@ -6,21 +6,20 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
-  ManyToOne,
-  JoinColumn,
+  OneToMany,
 } from 'typeorm';
-import { User } from '../../user/entities';
+import { Todo } from '../../todo/entities';
 
-@Entity({ name: 'todos' })
-export class Todo extends BaseEntity {
+@Entity({ name: 'users' })
+export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  title: string;
+  email: string;
 
   @Column()
-  description: string;
+  password: string;
 
   @CreateDateColumn({
     name: 'created_at',
@@ -37,7 +36,6 @@ export class Todo extends BaseEntity {
   })
   deletedAt: Date;
 
-  @ManyToOne(() => User, (user) => user.todos)
-  @JoinColumn({ name: 'user_id' })
-  user: User;
+  @OneToMany(() => Todo, (todo) => todo.user)
+  todos: Todo[];
 }
