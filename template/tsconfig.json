@@ -18,13 +18,7 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@controllers": ["src/app/controllers"],
-      "@dtos": ["src/app/dtos"],
-      "@entities": ["src/app/entities"],
       "@middlewares": ["src/app/middlewares"],
-      "@modules": ["src/app/modules"],
-      "@repositories": ["src/app/repositories"],
-      "@services": ["src/app/services"],
       "@app/*": ["src/app/*"],
       "@shared/*": ["src/shared/*"],
     }
