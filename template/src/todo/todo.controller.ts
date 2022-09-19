@@ -11,4 +11,10 @@ export class TodoController {
   create(@Body() todo: TodoDto) {
     return this.todoService.create(todo);
   }
+
+  @HttpCode(HttpStatus.OK)
+  @Post('many')
+  createMany(@Body() todos: TodoDto[]) {
+    return this.todoService.createMany(todos);
+  }
 }
