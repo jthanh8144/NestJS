@@ -1,10 +1,13 @@
+import { APP_FILTER, APP_PIPE } from '@nestjs/core';
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { TodoModule } from './todo/todo.module';
-import { LoggerMiddleware } from './middlewares';
+import { LoggerMiddleware } from '@common/middlewares';
+import { AllExceptionsFilter } from '@common/exceptions';
+import { ValidationPipe } from '@common/pipes';
 
 @Module({
   imports: [
@@ -15,6 +18,16 @@ import { LoggerMiddleware } from './middlewares';
     AuthModule,
     UserModule,
     TodoModule,
+  ],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: AllExceptionsFilter,
+    },
+    {
+      provide: APP_PIPE,
+      useClass: ValidationPipe,
+    },
   ],
 })
 export class AppModule {
