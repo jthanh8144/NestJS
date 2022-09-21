@@ -1,6 +1,14 @@
-import { Controller, HttpCode, HttpStatus, Get } from '@nestjs/common';
+import {
+  Controller,
+  HttpCode,
+  HttpStatus,
+  Get,
+  UseGuards,
+} from '@nestjs/common';
 import { UserService } from './user.service';
+import { JwtGuard } from '../auth/guard/jwt.guard';
 
+@UseGuards(JwtGuard)
 @Controller('users')
 export class UserController {
   constructor(private userService: UserService) {}
