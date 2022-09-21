@@ -4,10 +4,13 @@ import {
   HttpStatus,
   Get,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { JwtGuard } from '../auth/guard/jwt.guard';
+import { LoggingInterceptor } from '@common/interceptors';
 
+@UseInterceptors(LoggingInterceptor)
 @UseGuards(JwtGuard)
 @Controller('users')
 export class UserController {
